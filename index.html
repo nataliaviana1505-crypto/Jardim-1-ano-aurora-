@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8dce7">
+  <title>Aurora • 1 aninho 🦋</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --rose:#c65d7d;
+      --rose-soft:#f6d8e3;
+      --lilac:#ead9ee;
+      --sage:#dfe4ca;
+      --cream:#fffaf4;
+      --brown:#795c5d;
+      --gold:#cda36c;
+      --shadow:0 12px 35px rgba(119,75,87,.15);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--brown);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,.95), transparent 25%),
+        radial-gradient(circle at 90% 20%, rgba(246,218,229,.8), transparent 28%),
+        linear-gradient(135deg,#fffaf6,#f9eaf0 48%,#f5edf7);
+      font-family:"Cormorant Garamond",serif;
+      overflow-x:hidden;
+    }
+
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.18;
+      background-image:
+        radial-gradient(circle, #fff 0 1px, transparent 1.5px);
+      background-size:42px 42px;
+      z-index:0;
+    }
+
+    .page{
+      position:relative;
+      z-index:1;
+      width:min(100%,1080px);
+      margin:auto;
+      padding:18px 14px 50px;
+    }
+
+    .top-ornament{
+      text-align:center;
+      color:#c993a8;
+      font-size:22px;
+      letter-spacing:9px;
+      margin:3px 0 12px;
+    }
+
+    /* VÍDEO */
+    .video-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:30px;
+      border:3px solid rgba(255,255,255,.9);
+      box-shadow:var(--shadow);
+      background:#eadfe3;
+    }
+
+    .video-card video{
+      display:block;
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      background:#eadfe3;
+    }
+
+    .video-overlay{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      text-align:center;
+      pointer-events:none;
+      padding:20px;
+      background:linear-gradient(to bottom,rgba(60,35,47,.03),rgba(60,35,47,.22));
+      color:white;
+      text-shadow:0 2px 12px rgba(50,25,35,.45);
+    }
+
+    .video-overlay .small{
+      font-size:clamp(20px,4vw,34px);
+      line-height:1;
+    }
+
+    .video-overlay .script{
+      font-family:"Great Vibes",cursive;
+      font-size:clamp(48px,10vw,92px);
+      line-height:.95;
+      margin:4px 0 10px;
+    }
+
+    .video-overlay .invite{
+      font-size:clamp(18px,3vw,28px);
+    }
+
+    .sound{
+      position:absolute;
+      top:16px;
+      right:16px;
+      z-index:4;
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      border:2px solid rgba(255,255,255,.9);
+      background:rgba(198,93,125,.78);
+      color:white;
+      font-size:20px;
+      cursor:pointer;
+      box-shadow:0 5px 16px rgba(70,35,45,.2);
+    }
+
+    .play-hint{
+      position:absolute;
+      left:50%; top:50%;
+      transform:translate(-50%,-50%);
+      width:70px; height:70px;
+      border-radius:50%;
+      border:2px solid rgba(255,255,255,.85);
+      background:rgba(255,255,255,.25);
+      display:grid; place-items:center;
+      color:white;
+      font-size:34px;
+      pointer-events:none;
+      opacity:.9;
+      transition:.3s;
+    }
+
+    .video-card.playing .play-hint{opacity:0}
+
+    /* CARTÃO PRINCIPAL */
+    .card{
+      position:relative;
+      margin-top:18px;
+      padding:38px clamp(20px,5vw,70px) 46px;
+      border:1.5px solid rgba(205,163,108,.55);
+      border-radius:42px;
+      background:
+        radial-gradient(circle at 50% 0,rgba(255,255,255,.95),transparent 40%),
+        rgba(255,250,244,.92);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      text-align:center;
+    }
+
+    .card:before,
+    .card:after{
+      content:"✿";
+      position:absolute;
+      color:#df9bb0;
+      opacity:.5;
+      font-size:46px;
+    }
+    .card:before{left:20px;top:20px}
+    .card:after{right:20px;bottom:20px}
+
+    .eyebrow{
+      font-family:"Montserrat",sans-serif;
+      font-size:13px;
+      letter-spacing:7px;
+      color:#7f7f58;
+      margin-bottom:8px;
+    }
+
+    .divider{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      color:var(--gold);
+      margin:4px auto 8px;
+    }
+    .divider:before,.divider:after{
+      content:"";
+      width:80px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold));
+    }
+    .divider:after{transform:scaleX(-1)}
+
+    .name{
+      margin:0;
+      font-family:"Great Vibes",cursive;
+      font-size:clamp(86px,16vw,160px);
+      line-height:.9;
+      font-weight:400;
+      color:#c65d7d;
+      text-shadow:0 2px 0 rgba(255,255,255,.7);
+    }
+
+    .crown{
+      font-size:30px;
+      color:#d9a354;
+      margin:5px 0 0;
+    }
+
+    .age{
+      font-family:"Cormorant Garamond",serif;
+      font-size:clamp(26px,5vw,42px);
+      letter-spacing:8px;
+      color:#7d505a;
+      margin:5px 0 25px;
+    }
+
+    .info{
+      display:grid;
+      gap:11px;
+      justify-content:center;
+      margin-bottom:25px;
+    }
+
+    .info-row{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      font-size:clamp(20px,3.8vw,29px);
+    }
+
+    .info-row .icon{
+      font-family:"Montserrat",sans-serif;
+      font-size:22px;
+      color:#c65d7d;
+      width:30px;
+    }
+
+    .rule{
+      height:1px;
+      width:min(100%,520px);
+      margin:20px auto 18px;
+      background:linear-gradient(90deg,transparent,#d796ab,transparent);
+      position:relative;
+    }
+    .rule:after{
+      content:"♡";
+      position:absolute;
+      left:50%; top:50%;
+      transform:translate(-50%,-52%);
+      padding:0 12px;
+      background:var(--cream);
+      color:#c65d7d;
+      font-size:20px;
+    }
+
+    /* BOTÕES */
+    .buttons{
+      display:grid;
+      gap:13px;
+      width:min(100%,600px);
+      margin:0 auto;
+    }
+
+    .btn{
+      appearance:none;
+      border:1px solid transparent;
+      width:100%;
+      min-height:62px;
+      border-radius:999px;
+      padding:14px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:13px;
+      text-decoration:none;
+      font-family:"Montserrat",sans-serif;
+      font-size:14px;
+      letter-spacing:1.2px;
+      font-weight:600;
+      color:#76555d;
+      cursor:pointer;
+      transition:transform .2s,box-shadow .2s;
+      box-shadow:0 6px 16px rgba(120,80,90,.08);
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 9px 20px rgba(120,80,90,.13)}
+    .btn:active{transform:translateY(0)}
+    .btn-pink{background:#f8d9e4;border-color:#df9aae}
+    .btn-sage{background:#e6e7d3;border-color:#c8c9aa}
+    .btn-lilac{background:#ead7ec;border-color:#d0a9d1}
+    .btn .arrow{margin-left:auto;font-size:22px}
+    .btn .btn-icon{font-size:24px}
+
+    /* PRESENTES */
+    .gift-panel{
+      display:none;
+      margin:13px auto 0;
+      width:min(100%,600px);
+      padding:20px 24px;
+      border:1px solid #e2c1ca;
+      border-radius:25px;
+      background:rgba(255,246,249,.95);
+      text-align:left;
+      animation:open .25s ease;
+    }
+    .gift-panel.open{display:block}
+    @keyframes open{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+
+    .gift-panel h3{
+      margin:0 0 10px;
+      font-size:25px;
+      color:#b65b76;
+    }
+    .gift-panel p{
+      margin:7px 0;
+      font-size:21px;
+    }
+
+    /* CONFIRMAÇÃO */
+    .rsvp-note{
+      width:min(100%,650px);
+      margin:20px auto 0;
+      padding:20px 22px;
+      border:1px solid rgba(205,163,108,.75);
+      border-radius:25px;
+      background:linear-gradient(135deg,rgba(255,247,241,.98),rgba(252,235,240,.94));
+      box-shadow:0 5px 18px rgba(130,80,90,.07);
+    }
+
+    .rsvp-note .main{
+      font-size:clamp(19px,3.8vw,25px);
+      line-height:1.25;
+      margin:0 0 7px;
+      color:#9b465f;
+    }
+
+    .rsvp-note .deadline{
+      margin:0;
+      font-family:"Great Vibes",cursive;
+      font-size:clamp(30px,6vw,44px);
+      line-height:1.05;
+      color:#c65d7d;
+    }
+
+    /* FINAL */
+    .final{
+      margin-top:30px;
+      padding:25px 8px 5px;
+      text-align:center;
+    }
+    .final h2{
+      font-family:"Great Vibes",cursive;
+      font-weight:400;
+      font-size:clamp(42px,8vw,65px);
+      color:#c65d7d;
+      margin:0 0 8px;
+    }
+    .final p{
+      max-width:720px;
+      margin:0 auto;
+      font-size:22px;
+      line-height:1.35;
+    }
+    .signature{
+      margin-top:14px;
+      font-family:"Great Vibes",cursive;
+      font-size:34px;
+      color:#b86a82;
+    }
+
+    .floating{
+      position:fixed;
+      z-index:0;
+      pointer-events:none;
+      user-select:none;
+      animation:float 6s ease-in-out infinite;
+      opacity:.72;
+    }
+    .f1{left:2%;top:18%;font-size:27px}
+    .f2{right:3%;top:38%;font-size:31px;animation-delay:1.2s}
+    .f3{left:4%;bottom:14%;font-size:25px;animation-delay:2s}
+    .f4{right:5%;bottom:25%;font-size:28px;animation-delay:.5s}
+    @keyframes float{50%{transform:translateY(-12px) rotate(4deg)}}
+
+    footer{
+      text-align:center;
+      margin-top:28px;
+      font-family:"Montserrat",sans-serif;
+      font-size:10px;
+      letter-spacing:2px;
+      color:#a78891;
+    }
+
+    @media(max-width:600px){
+      .page{padding:10px 8px 35px}
+      .video-card{border-radius:22px}
+      .sound{top:10px;right:10px;width:43px;height:43px}
+      .play-hint{width:58px;height:58px;font-size:27px}
+      .card{border-radius:30px;padding:30px 15px 34px}
+      .card:before{left:8px;top:8px}
+      .card:after{right:8px;bottom:8px}
+      .eyebrow{letter-spacing:4px}
+      .info-row{font-size:20px}
+      .btn{min-height:58px;padding:12px 17px;font-size:12px}
+      .rsvp-note{padding:17px 14px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="floating f1">🦋</div>
+  <div class="floating f2">🦋</div>
+  <div class="floating f3">✿</div>
+  <div class="floating f4">✨</div>
+
+  <main class="page">
+    <div class="top-ornament">✿　🦋　✿</div>
+
+    <!-- VÍDEO: mantenha este nome igual ao arquivo enviado ao GitHub -->
+    <section class="video-card" id="videoCard">
+      <video id="video" playsinline autoplay muted loop preload="metadata">
+        <source src="VID_20261005_094720.mp4" type="video/mp4">
+        Seu navegador não conseguiu carregar o vídeo.
+      </video>
+
+      <button class="sound" id="soundBtn" aria-label="Ativar ou desativar som">🔇</button>
+      <div class="play-hint" id="playHint">▶</div>
+
+      <div class="video-overlay">
+        <div class="small">Um dia mágico no</div>
+        <div class="script">Jardim Encantado</div>
+        <div class="invite">Você é nosso convidado especial! 💗</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="eyebrow">JARDIM ENCANTADO</div>
+      <div class="divider">♡</div>
+
+      <div class="crown">♛</div>
+      <h1 class="name">Aurora</h1>
+      <div class="age">1 ANINHO</div>
+
+      <div class="info">
+        <div class="info-row"><span class="icon">📅</span><span>06 de dezembro de 2026</span></div>
+        <div class="info-row"><span class="icon">◷</span><span>às 13h</span></div>
+        <div class="info-row"><span class="icon">📍</span><span>Espaço Casa Blanca</span></div>
+      </div>
+
+      <div class="rule"></div>
+
+      <div class="buttons">
+        <button class="btn btn-pink" id="giftBtn" type="button">
+          <span class="btn-icon">🎁</span>
+          <span>SUGESTÕES DE PRESENTES</span>
+          <span class="arrow" id="giftArrow">→</span>
+        </button>
+
+        <a class="btn btn-sage"
+           href="https://maps.app.goo.gl/EoG3ntPtkEpegEkg9"
+           target="_blank"
+           rel="noopener">
+          <span class="btn-icon">📍</span>
+          <span>COMO CHEGAR</span>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="btn btn-lilac"
+           href="https://wa.me/5531971444254?text=Ol%C3%A1!%20Confirmo%20minha%20presen%C3%A7a%20no%20anivers%C3%A1rio%20de%201%20ano%20da%20Aurora.%20%F0%9F%A6%8B%F0%9F%92%97"
+           target="_blank"
+           rel="noopener">
+          <span class="btn-icon">♥</span>
+          <span>CONFIRMAR PRESENÇA</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <div class="gift-panel" id="giftPanel">
+        <h3>🎁 Sugestões de presentes</h3>
+        <p>🧸 Brinquedos</p>
+        <p>👟 Calçados: <strong>20 e 21/22</strong></p>
+        <p>👗 Roupas: <strong>tamanho 1 e 2</strong></p>
+        <p>💗 Ou o que você escolher com carinho!</p>
+      </div>
+
+      <div class="rsvp-note">
+        <p class="main">Para que possamos preparar tudo com muito carinho, pedimos que confirme sua presença até o dia <strong>29 de novembro</strong>.</p>
+        <p class="deadline">A entrada na festa será permitida somente aos convidados que tiverem confirmado presença. 💗</p>
+      </div>
+    </section>
+
+    <section class="final">
+      <h2>Será um dia inesquecível!</h2>
+      <p>
+        Preparamos tudo com muito carinho para celebrar o primeiro aninho
+        da nossa pequena Aurora. Esperamos você para viver esse momento
+        especial conosco! 🌸🦋
+      </p>
+      <div class="signature">Com carinho, família da Aurora 💗</div>
+    </section>
+
+    <footer>UM JARDIM ENCANTADO PARA CELEBRAR O PRIMEIRO ANINHO DA AURORA 🦋</footer>
+  </main>
+
+  <script>
+    const video = document.getElementById("video");
+    const videoCard = document.getElementById("videoCard");
+    const soundBtn = document.getElementById("soundBtn");
+    const playHint = document.getElementById("playHint");
+
+    // Som
+    soundBtn.addEventListener("click", async () => {
+      video.muted = !video.muted;
+      soundBtn.textContent = video.muted ? "🔇" : "🔊";
+      if (!video.paused) return;
+      try { await video.play(); } catch(e) {}
+    });
+
+    // Toque no vídeo: reproduz/pausa
+    video.addEventListener("click", async () => {
+      if (video.paused) {
+        try { await video.play(); } catch(e) {}
+      } else {
+        video.pause();
+      }
+    });
+
+    video.addEventListener("play", () => {
+      videoCard.classList.add("playing");
+      playHint.textContent = "❚❚";
+    });
+
+    video.addEventListener("pause", () => {
+      videoCard.classList.remove("playing");
+      playHint.textContent = "▶";
+    });
+
+    // Presentes
+    const giftBtn = document.getElementById("giftBtn");
+    const giftPanel = document.getElementById("giftPanel");
+    const giftArrow = document.getElementById("giftArrow");
+
+    giftBtn.addEventListener("click", () => {
+      const open = giftPanel.classList.toggle("open");
+      giftArrow.textContent = open ? "↑" : "→";
+    });
+
+    // Tenta iniciar o vídeo automaticamente sem som.
+    window.addEventListener("load", async () => {
+      try { await video.play(); } catch(e) {}
+    });
+  </script>
+</body>
+</html>
