@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aurora - 1 aninho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rose:#c9798f; --rose2:#a95873; --cream:#fffaf5; --sage:#91aa8d;
+  --lav:#cbb8d8; --gold:#c9a96b; --ink:#6d5360;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink); font-family:Georgia, "Times New Roman", serif;
+  background:
+    radial-gradient(circle at 8% 4%, rgba(255,218,230,.75), transparent 22%),
+    radial-gradient(circle at 90% 11%, rgba(222,239,218,.8), transparent 22%),
+    linear-gradient(180deg,#fffaf7 0%,#fffdf9 48%,#faf5fb 100%);
+  overflow-x:hidden;
+}
+.page{max-width:820px;margin:auto;position:relative}
+.sparkle{position:fixed;pointer-events:none;opacity:.36;font-size:18px;animation:float 7s ease-in-out infinite}
+.s1{left:4%;top:14%}.s2{right:6%;top:29%;animation-delay:2s}.s3{left:9%;bottom:18%;animation-delay:4s}
+@keyframes float{50%{transform:translateY(-14px) rotate(8deg);opacity:.7}}
+.hero{padding:20px 16px 8px}
+.video-wrap{
+  position:relative;border-radius:30px;overflow:hidden;
+  box-shadow:0 20px 45px rgba(122,78,95,.18);
+  border:1px solid rgba(201,169,107,.45);background:#eadfe3;
+}
+video{display:block;width:100%;height:auto;max-height:70vh;background:#eadfe3}
+.overlay{
+ position:absolute;left:0;right:0;bottom:0;padding:55px 18px 18px;text-align:center;color:white;
+ background:linear-gradient(transparent,rgba(64,37,50,.66));text-shadow:0 2px 12px rgba(0,0,0,.35)
+}
+.overlay .small{font-size:clamp(16px,3.4vw,23px);letter-spacing:.5px}
+.overlay .main{font-size:clamp(23px,5vw,38px);font-weight:bold;margin-top:5px}
+.sound{
+ position:absolute;top:14px;right:14px;border:0;border-radius:999px;width:46px;height:46px;
+ background:rgba(255,255,255,.86);font-size:20px;box-shadow:0 6px 20px rgba(0,0,0,.16);cursor:pointer
+}
+.card{
+ margin:20px 16px;padding:28px 20px;border-radius:30px;text-align:center;
+ background:rgba(255,255,255,.84);backdrop-filter:blur(8px);
+ border:1px solid rgba(201,169,107,.32);box-shadow:0 16px 40px rgba(126,87,101,.10);
+ position:relative;overflow:hidden
+}
+.card:before,.card:after{content:"🌸";position:absolute;font-size:42px;opacity:.22}
+.card:before{left:-5px;top:-8px;transform:rotate(-18deg)} .card:after{right:-3px;bottom:-10px;transform:rotate(18deg)}
+.kicker{font-family:Arial,sans-serif;letter-spacing:3px;font-size:12px;color:var(--sage);font-weight:700}
+h1{font-family:"Great Vibes",cursive;font-size:clamp(58px,15vw,96px);line-height:1.05;margin:8px 0 0;color:var(--rose2);font-weight:400}
+.age{font-family:Arial,sans-serif;font-weight:800;letter-spacing:4px;color:var(--gold);margin:1px 0 20px}
+.info{font-size:20px;line-height:1.8}.info b{color:var(--rose2)}
+.actions{display:grid;gap:12px;margin-top:22px}
+.btn{
+ display:block;text-decoration:none;color:white;background:linear-gradient(135deg,var(--rose),var(--rose2));
+ padding:15px 18px;border-radius:999px;font-family:Arial,sans-serif;font-weight:800;letter-spacing:.5px;
+ box-shadow:0 10px 24px rgba(169,88,115,.22);border:none;cursor:pointer;font-size:15px
+}
+.btn.alt{background:linear-gradient(135deg,#9cb195,#718c72)}
+.btn.gold{background:linear-gradient(135deg,#d8bd83,#b89454)}
+.gifts{display:none;margin-top:15px;padding:18px;border-radius:20px;background:#fff7fa;font-size:18px;line-height:1.75}
+.gifts.show{display:block;animation:appear .3s ease}
+@keyframes appear{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.final{font-size:18px;line-height:1.7;padding:8px 5px}
+.final strong{display:block;font-size:24px;color:var(--rose2);margin-bottom:8px}
+.signature{font-style:italic;color:var(--rose2);font-size:20px;margin-top:18px}
+.footer{padding:0 0 34px;text-align:center;color:#aa8b98;font:12px Arial,sans-serif}
+.butterfly{display:inline-block;animation:wing 2.4s ease-in-out infinite}
+@keyframes wing{50%{transform:translateY(-4px) rotate(5deg)}}
+@media (min-width:700px){.actions{grid-template-columns:1fr 1fr 1fr}.card{padding:38px 44px}}
+</style>
+</head>
+<body>
+<div class="sparkle s1">✨</div><div class="sparkle s2">🦋</div><div class="sparkle s3">✨</div>
+<main class="page">
+  <section class="hero">
+    <div class="video-wrap">
+      <video id="video" playsinline controls autoplay muted loop poster="">
+        <source src="video_aurora.mp4" type="video/mp4">
+      </video>
+      <button class="sound" id="sound" aria-label="Ativar ou desativar som">🔇</button>
+      <div class="overlay">
+        <div class="small">Um dia mágico no Jardim Encantado</div>
+        <div class="main">Você é nosso convidado especial! 💗</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="kicker">JARDIM ENCANTADO</div>
+    <h1>Aurora</h1>
+    <div class="age">1 ANINHO <span class="butterfly">🦋</span></div>
+
+    <div class="info">
+      <div><b>06 de dezembro de 2026</b></div>
+      <div>às <b>13h</b></div>
+      <div>📍 <b>Espaço Casa Blanca</b></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn gold" onclick="toggleGifts()">🎁 SUGESTÕES DE PRESENTES</button>
+      <a class="btn alt" id="maps" href="https://maps.app.goo.gl/EoG3ntPtkEpegEkg9" target="_blank" rel="noopener">📍 COMO CHEGAR</a>
+      <a class="btn" href="https://wa.me/5531971444254?text=Ol%C3%A1%21%20Confirmo%20minha%20presen%C3%A7a%20no%20anivers%C3%A1rio%20de%201%20ano%20da%20Aurora.%20%F0%9F%A6%8B%F0%9F%92%97">💗 CONFIRMAR PRESENÇA</a>
+    </div>
+
+    <div class="gifts" id="gifts">
+      <b>🎁 Sugestões de presentes</b><br>
+      🧸 Brinquedos<br>
+      👟 Calçados: 20 e 21/22<br>
+      👗 Roupas: tamanho 1 e 2<br><br>
+      <em>Ou o que você escolher com carinho! 💗</em>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="final">
+      <strong>Será um dia inesquecível!</strong>
+      Preparamos tudo com muito carinho para celebrar o primeiro aninho da nossa pequena Aurora.
+      Esperamos você para viver esse momento especial conosco! 🌸🦋
+      <div class="signature">Com carinho,<br>família da Aurora 💗</div>
+    </div>
+  </section>
+  <div class="footer">Aurora • 1 aninho • 06.12.2026</div>
+</main>
+
+<script>
+const v=document.getElementById('video'), s=document.getElementById('sound');
+s.addEventListener('click',()=>{v.muted=!v.muted;s.textContent=v.muted?'🔇':'🔊';if(v.paused)v.play();});
+function toggleGifts(){document.getElementById('gifts').classList.toggle('show')}
+</script>
+</body>
+</html>
